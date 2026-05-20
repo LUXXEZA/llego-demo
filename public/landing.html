@@ -8,7 +8,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', sans-serif; color: #1a1a2e; background: #fff; }
 
-    /* NAV */
     nav {
       background: #1a1a2e;
       padding: 1rem 3rem;
@@ -23,37 +22,36 @@
     nav a {
       color: white;
       text-decoration: none;
-      background: #e94560;
+      background: #1f3a5f;
       padding: 0.6rem 1.5rem;
       border-radius: 8px;
       font-weight: 700;
       font-size: 0.95rem;
     }
 
-    /* HERO */
     .hero {
       background: #1a1a2e;
       color: white;
-      padding: 6rem 3rem;
+      padding: 7rem 3rem;
       text-align: center;
     }
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.15;
       margin-bottom: 1.5rem;
+      color: white;
     }
-    .hero h1 span { color: #e94560; }
     .hero p {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: #aab4c4;
-      max-width: 600px;
+      max-width: 580px;
       margin: 0 auto 2.5rem;
       line-height: 1.7;
     }
     .hero-btns { display: flex; gap: 1rem; justify-content: center; }
     .btn-primary {
-      background: #e94560;
+      background: #1f3a5f;
       color: white;
       padding: 1rem 2.5rem;
       border-radius: 10px;
@@ -72,21 +70,20 @@
       border: 2px solid #aab4c4;
     }
 
-    /* PROBLEMA */
     .problema {
       background: #f9f9f9;
       padding: 5rem 3rem;
       text-align: center;
     }
     .problema h2 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 800;
       margin-bottom: 1rem;
     }
     .problema p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #555;
-      max-width: 650px;
+      max-width: 620px;
       margin: 0 auto 3rem;
       line-height: 1.7;
     }
@@ -101,45 +98,38 @@
       background: white;
       border-radius: 14px;
       padding: 2rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      text-align: left;
     }
     .comparacion-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: #1a1a2e;
     }
-    .comparacion-card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
+    .comparacion-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
     .comparacion-card ul li {
       font-size: 0.95rem;
       color: #555;
       padding-left: 1.5rem;
       position: relative;
     }
-    .comparacion-card ul li::before {
-      position: absolute;
-      left: 0;
-    }
-    .malo li::before { content: "✗"; color: #e94560; font-weight: 700; }
-    .bueno li::before { content: "✓"; color: #2ecc71; font-weight: 700; }
-    .bueno h3 { color: #1f3a5f; }
+    .comparacion-card ul li::before { position: absolute; left: 0; font-weight: 700; }
+    .malo li::before { content: "✗"; color: #c0392b; }
+    .bueno li::before { content: "✓"; color: #27ae60; }
 
-    /* FEATURES */
     .features {
       padding: 5rem 3rem;
       text-align: center;
     }
     .features h2 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 800;
       margin-bottom: 0.75rem;
     }
-    .features p {
+    .features > p {
       color: #555;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       margin-bottom: 3rem;
     }
     .features-grid {
@@ -154,13 +144,7 @@
       border-radius: 14px;
       padding: 2rem 1.5rem;
       text-align: left;
-    }
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      background: #1f3a5f;
-      border-radius: 10px;
-      margin-bottom: 1rem;
+      border-top: 4px solid #1f3a5f;
     }
     .feature-card h3 {
       font-size: 1.05rem;
@@ -172,26 +156,16 @@
       font-size: 0.9rem;
       color: #777;
       line-height: 1.6;
-      margin: 0;
     }
 
-    /* PRECIO */
     .precio {
       background: #1a1a2e;
       color: white;
       padding: 5rem 3rem;
       text-align: center;
     }
-    .precio h2 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-    }
-    .precio p {
-      color: #aab4c4;
-      font-size: 1.1rem;
-      margin-bottom: 3rem;
-    }
+    .precio h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .precio > p { color: #aab4c4; font-size: 1.05rem; margin-bottom: 3rem; }
     .precio-card {
       background: white;
       color: #1a1a2e;
@@ -201,11 +175,7 @@
       margin: 0 auto;
       box-shadow: 0 4px 24px rgba(0,0,0,0.2);
     }
-    .precio-card h3 {
-      font-size: 1.1rem;
-      color: #888;
-      margin-bottom: 0.5rem;
-    }
+    .precio-card h3 { font-size: 1rem; color: #888; margin-bottom: 0.5rem; }
     .precio-monto {
       font-size: 3.5rem;
       font-weight: 900;
@@ -213,11 +183,7 @@
       line-height: 1;
       margin-bottom: 0.25rem;
     }
-    .precio-sub {
-      color: #888;
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-    }
+    .precio-sub { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
     .precio-lista {
       list-style: none;
       display: flex;
@@ -234,7 +200,7 @@
     }
     .precio-lista li::before {
       content: "✓";
-      color: #2ecc71;
+      color: #27ae60;
       font-weight: 700;
       position: absolute;
       left: 0;
@@ -250,7 +216,7 @@
     .setup strong { color: #1a1a2e; }
     .btn-precio {
       display: block;
-      background: #e94560;
+      background: #1f3a5f;
       color: white;
       padding: 1rem;
       border-radius: 10px;
@@ -260,22 +226,13 @@
       text-align: center;
     }
 
-    /* CTA */
     .cta {
       padding: 5rem 3rem;
       text-align: center;
       background: #f9f9f9;
     }
-    .cta h2 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-    .cta p {
-      color: #555;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
+    .cta h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .cta p { color: #555; font-size: 1.05rem; margin-bottom: 2rem; }
     .cta a {
       background: #1f3a5f;
       color: white;
@@ -286,7 +243,6 @@
       font-size: 1rem;
     }
 
-    /* FOOTER */
     footer {
       background: #1a1a2e;
       color: #aab4c4;
@@ -298,15 +254,13 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <img src="/logo.png" alt="Llego" />
     <a href="/index.html">Ver Demo</a>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
-    <h1>Tu restaurante,<br /><span>tus pedidos,</span><br />sin comisiones.</h1>
+    <h1>Tu restaurante,<br />tus pedidos,<br />sin comisiones.</h1>
     <p>Llego es el sistema de delivery propio para restaurantes en Panama. Deja de regalarle el 25% de tus ventas a las plataformas.</p>
     <div class="hero-btns">
       <a href="/index.html" class="btn-primary">Ver Demo en Vivo</a>
@@ -314,10 +268,9 @@
     </div>
   </section>
 
-  <!-- PROBLEMA -->
   <section class="problema">
     <h2>El problema con PedidosYa y Uber Eats</h2>
-    <p>Cada pedido que entra por esas plataformas, te cuesta entre 20% y 30% de comision. En un restaurante que vende $5,000 al mes, eso son $1,250 que se van a otra empresa.</p>
+    <p>Cada pedido que entra por esas plataformas te cuesta entre 20% y 30% de comision. En un restaurante que vende $5,000 al mes, eso son $1,250 que se van a otra empresa cada mes.</p>
     <div class="comparacion">
       <div class="comparacion-card malo">
         <h3>PedidosYa / Uber Eats</h3>
@@ -331,7 +284,7 @@
       <div class="comparacion-card bueno">
         <h3>Llego</h3>
         <ul>
-          <li>$249 al mes, sin importar cuanto vendas</li>
+          <li>$250 al mes, sin importar cuanto vendas</li>
           <li>Tus clientes son tuyos</li>
           <li>Sistema propio con tu marca</li>
           <li>Control total de tu negocio</li>
@@ -340,41 +293,35 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section class="features">
     <h2>Todo lo que necesitas en un solo sistema</h2>
     <p>Cuatro herramientas integradas para que tu restaurante funcione solo.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon"></div>
         <h3>Menu Digital</h3>
         <p>Tus clientes piden desde el celular sin necesidad de app. Solo un link.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon"></div>
         <h3>Panel de Cocina</h3>
         <p>Tu equipo ve los pedidos en tiempo real y los avanza con un click.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon"></div>
         <h3>Control de Mensajeros</h3>
         <p>Asigna pedidos a tus mensajeros y rastrea cada entrega en vivo.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon"></div>
         <h3>Dashboard del Dueno</h3>
         <p>Ve tus ingresos, pedidos y rendimiento del negocio en un solo lugar.</p>
       </div>
     </div>
   </section>
 
-  <!-- PRECIO -->
   <section class="precio">
     <h2>Un precio simple y justo</h2>
     <p>Sin sorpresas, sin comisiones, sin letras pequenas.</p>
     <div class="precio-card">
       <h3>Mensual</h3>
-      <div class="precio-monto">$249</div>
+      <div class="precio-monto">$250</div>
       <div class="precio-sub">por mes, todo incluido</div>
       <ul class="precio-lista">
         <li>Menu digital ilimitado</li>
@@ -391,14 +338,12 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta">
     <h2>Mira como funciona antes de decidir</h2>
     <p>Tenemos un demo en vivo con todas las funciones activas. Sin registro, sin tarjeta.</p>
     <a href="/index.html">Ver Demo Completo</a>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>Llego — Sistema de delivery para restaurantes en Panama. Todos los derechos reservados 2026.</p>
   </footer>

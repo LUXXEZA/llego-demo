@@ -19,7 +19,7 @@ function NavBar() {
   return (
     <nav className="nav-principal">
       <div className="nav-logo">
-        <img src="/logo.png" alt="Llego" style={{ height: '36px' }} />
+      
       </div>
       <div className="nav-links">
         {links.map(link => (
