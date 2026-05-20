@@ -43,11 +43,17 @@
       margin-bottom: 1.5rem;
       color: white;
       @media (max-width: 768px) {
-  .hero { padding: 4rem 1.5rem; }
-  .hero h1 { font-size: 2.2rem; }
-  .hero-btns { flex-direction: column; align-items: center; }
+  html, body { overflow-x: hidden; width: 100%; }
+  nav { padding: 1rem; }
+  .hero { padding: 3rem 1.5rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .problema { padding: 3rem 1.5rem; }
   .comparacion { grid-template-columns: 1fr; }
-  .features-grid { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 0 1rem; }
+  .features { padding: 3rem 1.5rem; }
+  .features-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .precio { padding: 3rem 1.5rem; }
+  .cta { padding: 3rem 1.5rem; }
 }
     }
     .hero p {
