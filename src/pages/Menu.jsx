@@ -5,6 +5,7 @@ function Menu() {
   const [carrito, setCarrito] = useState([]);
   const [categoriaActiva, setCategoriaActiva] = useState('Todas');
   const [pedidoConfirmado, setPedidoConfirmado] = useState(false);
+  const [verCarrito, setVerCarrito] = useState(false);
 
   const categorias = ['Todas', ...new Set(menu.map(item => item.categoria))];
 
@@ -30,18 +31,18 @@ function Menu() {
 
   if (pedidoConfirmado) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 60px)', flexDirection: 'column', gap: '1.5rem', background: '#f5f5f5' }}>
-        <div style={{ background: 'white', borderRadius: '16px', padding: '3rem', textAlign: 'center', maxWidth: '420px', width: '100%', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'calc(100vh - 60px)', flexDirection: 'column', gap: '1.5rem', background: '#f5f5f5', padding: '1rem' }}>
+        <div style={{ background: 'white', borderRadius: '16px', padding: '2.5rem 2rem', textAlign: 'center', maxWidth: '420px', width: '100%', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
           <div style={{ width: '70px', height: '70px', background: '#1f3a5f', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
             <span style={{ color: 'white', fontSize: '2rem' }}>✓</span>
           </div>
           <h2 style={{ color: '#1a1a2e', fontWeight: 800, fontSize: '1.5rem', marginBottom: '0.75rem' }}>Pedido Confirmado</h2>
-          <p style={{ color: '#888', marginBottom: '2rem', lineHeight: 1.6 }}>Tu pedido esta siendo preparado. Te avisaremos cuando este listo para entrega.</p>
+          <p style={{ color: '#888', marginBottom: '2rem', lineHeight: 1.6 }}>Tu pedido esta siendo preparado. Te avisaremos cuando este listo.</p>
           <div style={{ background: '#f9f9f9', borderRadius: '10px', padding: '1rem', marginBottom: '2rem' }}>
             <p style={{ fontWeight: 700, color: '#1f3a5f', fontSize: '1.2rem' }}>Total: ${total.toFixed(2)}</p>
           </div>
           <button
-            onClick={() => { setCarrito([]); setPedidoConfirmado(false); }}
+            onClick={() => { setCarrito([]); setPedidoConfirmado(false); setVerCarrito(false); }}
             style={{ background: '#1f3a5f', color: 'white', border: 'none', borderRadius: '10px', padding: '0.85rem 2rem', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', width: '100%' }}
           >
             Hacer otro pedido
@@ -52,17 +53,17 @@ function Menu() {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: 'calc(100vh - 60px)' }}>
+    <div style={{ minHeight: 'calc(100vh - 60px)', position: 'relative' }}>
 
       {/* MENU */}
-      <div style={{ flex: 1, padding: '2rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1 style={{ fontSize: '1.5rem', color: '#1a1a2e' }}>{restaurante.nombre}</h1>
-          <p style={{ color: '#888' }}>{restaurante.direccion}</p>
+      <div style={{ padding: '1.5rem 1rem', maxWidth: '900px', margin: '0 auto', paddingBottom: totalItems > 0 ? '100px' : '1.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+          <h1 style={{ fontSize: '1.3rem', color: '#1a1a2e' }}>{restaurante.nombre}</h1>
+          <p style={{ color: '#888', fontSize: '0.9rem' }}>{restaurante.direccion}</p>
         </div>
 
         {/* CATEGORIAS */}
-        <div style={{ display: 'flex', gap: '0', marginBottom: '2rem', borderBottom: '1px solid #eee' }}>
+        <div style={{ display: 'flex', gap: '0', marginBottom: '1.5rem', borderBottom: '1px solid #eee', overflowX: 'auto' }}>
           {categorias.map(cat => (
             <button
               key={cat}
@@ -73,10 +74,10 @@ function Menu() {
                 borderBottom: categoriaActiva === cat ? '3px solid #1f3a5f' : '3px solid transparent',
                 color: categoriaActiva === cat ? '#1f3a5f' : '#888',
                 fontWeight: categoriaActiva === cat ? 700 : 400,
-                fontSize: '0.95rem',
-                padding: '0.75rem 1.2rem',
+                fontSize: '0.9rem',
+                padding: '0.6rem 1rem',
                 cursor: 'pointer',
-                transition: 'all 0.2s',
+                whiteSpace: 'nowrap',
                 marginBottom: '-1px',
               }}
             >
@@ -86,19 +87,19 @@ function Menu() {
         </div>
 
         {/* PRODUCTOS */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
           {menuFiltrado.map(item => (
             <div key={item.id} className="card" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ height: '80px', background: '#f0f4f8', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
-                <span style={{ color: '#1f3a5f', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '1px' }}>{item.categoria.toUpperCase()}</span>
+              <div style={{ height: '70px', background: '#f0f4f8', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
+                <span style={{ color: '#1f3a5f', fontWeight: 700, fontSize: '0.75rem', letterSpacing: '1px' }}>{item.categoria.toUpperCase()}</span>
               </div>
-              <h3 style={{ color: '#1a1a2e' }}>{item.nombre}</h3>
-              <p style={{ color: '#888', fontSize: '0.85rem' }}>{item.descripcion}</p>
+              <h3 style={{ color: '#1a1a2e', fontSize: '0.95rem' }}>{item.nombre}</h3>
+              <p style={{ color: '#888', fontSize: '0.8rem', lineHeight: 1.4 }}>{item.descripcion}</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', paddingTop: '0.75rem', borderTop: '1px solid #f0f0f0' }}>
-                <span style={{ fontWeight: 700, color: '#1f3a5f', fontSize: '1.1rem' }}>${item.precio.toFixed(2)}</span>
+                <span style={{ fontWeight: 700, color: '#1f3a5f', fontSize: '1rem' }}>${item.precio.toFixed(2)}</span>
                 <button
                   onClick={() => agregarAlCarrito(item)}
-                  style={{ background: '#1f3a5f', color: 'white', border: 'none', borderRadius: '8px', padding: '0.4rem 1rem', fontWeight: 600, fontSize: '0.85rem', cursor: 'pointer' }}
+                  style={{ background: '#1f3a5f', color: 'white', border: 'none', borderRadius: '8px', padding: '0.4rem 0.85rem', fontWeight: 600, fontSize: '0.8rem', cursor: 'pointer' }}
                 >
                   Agregar
                 </button>
@@ -108,18 +109,25 @@ function Menu() {
         </div>
       </div>
 
-      {/* CARRITO */}
-      <div style={{ width: '320px', background: 'white', padding: '1.5rem', boxShadow: '-2px 0 10px rgba(0,0,0,0.08)', position: 'sticky', top: '60px', height: 'calc(100vh - 60px)', overflowY: 'auto' }}>
-        <h2 style={{ color: '#1a1a2e', marginBottom: '1rem', fontWeight: 700 }}>
-          Tu pedido {totalItems > 0 && (
-            <span style={{ background: '#1f3a5f', color: 'white', borderRadius: '50%', padding: '0.1rem 0.5rem', fontSize: '0.8rem', marginLeft: '0.5rem' }}>{totalItems}</span>
-          )}
-        </h2>
+      {/* BOTON FLOTANTE DEL CARRITO EN MOVIL */}
+      {totalItems > 0 && !verCarrito && (
+        <div
+          onClick={() => setVerCarrito(true)}
+          style={{ position: 'fixed', bottom: '1.5rem', left: '50%', transform: 'translateX(-50%)', background: '#1f3a5f', color: 'white', padding: '1rem 2rem', borderRadius: '50px', cursor: 'pointer', fontWeight: 700, fontSize: '0.95rem', boxShadow: '0 4px 20px rgba(0,0,0,0.2)', zIndex: 50, whiteSpace: 'nowrap' }}
+        >
+          Ver pedido · {totalItems} items · ${total.toFixed(2)}
+        </div>
+      )}
 
-        {carrito.length === 0 ? (
-          <p style={{ color: '#aaa', textAlign: 'center', marginTop: '3rem', fontSize: '0.95rem' }}>Tu carrito esta vacio</p>
-        ) : (
-          <>
+      {/* CARRITO MODAL */}
+      {verCarrito && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 200, display: 'flex', alignItems: 'flex-end' }}>
+          <div style={{ background: 'white', width: '100%', borderRadius: '20px 20px 0 0', padding: '1.5rem', maxHeight: '85vh', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h2 style={{ color: '#1a1a2e', fontWeight: 700 }}>Tu pedido</h2>
+              <button onClick={() => setVerCarrito(false)} style={{ background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#888' }}>×</button>
+            </div>
+
             {carrito.map(item => (
               <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid #f0f0f0' }}>
                 <div>
@@ -127,33 +135,26 @@ function Menu() {
                   <p style={{ color: '#888', fontSize: '0.8rem' }}>x{item.cantidad} · ${item.precio.toFixed(2)} c/u</p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>${(item.precio * item.cantidad).toFixed(2)}</span>
-                  <button
-                    onClick={() => eliminarDelCarrito(item.id)}
-                    style={{ background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: '1rem', lineHeight: 1 }}
-                  >
-                    x
-                  </button>
+                  <span style={{ fontWeight: 700 }}>${(item.precio * item.cantidad).toFixed(2)}</span>
+                  <button onClick={() => eliminarDelCarrito(item.id)} style={{ background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: '1.1rem' }}>×</button>
                 </div>
               </div>
             ))}
 
-            <div style={{ marginTop: '1rem', padding: '1rem', background: '#f9f9f9', borderRadius: '8px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, fontSize: '1.1rem' }}>
-                <span>Total</span>
-                <span style={{ color: '#1f3a5f' }}>${total.toFixed(2)}</span>
-              </div>
+            <div style={{ margin: '1rem 0', padding: '1rem', background: '#f9f9f9', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', fontWeight: 700, fontSize: '1.1rem' }}>
+              <span>Total</span>
+              <span style={{ color: '#1f3a5f' }}>${total.toFixed(2)}</span>
             </div>
 
             <button
               onClick={() => setPedidoConfirmado(true)}
-              style={{ width: '100%', marginTop: '1rem', padding: '0.85rem', background: '#1f3a5f', color: 'white', border: 'none', borderRadius: '10px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer' }}
+              style={{ width: '100%', padding: '1rem', background: '#1f3a5f', color: 'white', border: 'none', borderRadius: '10px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer' }}
             >
               Confirmar Pedido
             </button>
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
