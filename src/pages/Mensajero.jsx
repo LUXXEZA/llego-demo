@@ -3,7 +3,13 @@ import { mensajeros, pedidosSimulados } from '../data/datos';
 
 function Mensajero() {
   const [mensajeroActivo, setMensajeroActivo] = useState(mensajeros[0]);
+  const [entregado, setEntregado] = useState(false);
   const pedidoAsignado = pedidosSimulados.find(p => p.id === mensajeroActivo.pedido);
+
+  const cambiarMensajero = (m) => {
+    setMensajeroActivo(m);
+    setEntregado(false);
+  };
 
   return (
     <div className="pagina">
@@ -18,7 +24,7 @@ function Mensajero() {
             <div
               key={m.id}
               className="card"
-              onClick={() => setMensajeroActivo(m)}
+              onClick={() => cambiarMensajero(m)}
               style={{
                 cursor: 'pointer',
                 borderLeft: mensajeroActivo.id === m.id ? '4px solid #1f3a5f' : '4px solid transparent',
@@ -42,32 +48,40 @@ function Mensajero() {
           ))}
         </div>
 
-        {/* DETALLE DEL MENSAJERO */}
+        {/* DETALLE */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
           {/* MAPA SIMULADO */}
-          <div className="card" style={{ height: '300px', background: '#e8f0fe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem', borderRadius: '12px' }}>
-            <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', borderRadius: '12px' }}>
-              <img
-                src="https://maps.googleapis.com/maps/api/staticmap?center=8.9936,-79.5197&zoom=14&size=800x300&maptype=roadmap&markers=color:blue|8.9936,-79.5197&key=AIzaSyD-placeholder"
-                alt="mapa"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(0.8)' }}
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.5rem' }}>
-                <div style={{ width: '60px', height: '60px', background: '#1f3a5f', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ color: 'white', fontSize: '1.5rem' }}>M</span>
-                </div>
-                <p style={{ fontWeight: 700, color: '#1a1a2e' }}>{mensajeroActivo.nombre}</p>
-                <p style={{ fontSize: '0.85rem', color: '#555' }}>Lat: {mensajeroActivo.lat} · Lng: {mensajeroActivo.lng}</p>
-              </div>
+          <div className="card" style={{ height: '260px', background: '#e8f0fe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.75rem' }}>
+            <div style={{ width: '56px', height: '56px', background: '#1f3a5f', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ color: 'white', fontWeight: 700, fontSize: '1.2rem' }}>M</span>
             </div>
+            <p style={{ fontWeight: 700, color: '#1a1a2e' }}>{mensajeroActivo.nombre}</p>
+            <p style={{ fontSize: '0.85rem', color: '#555' }}>Lat: {mensajeroActivo.lat} · Lng: {mensajeroActivo.lng}</p>
+            <p style={{ fontSize: '0.8rem', color: '#888' }}>Ubicacion en tiempo real</p>
           </div>
 
-          {/* PEDIDO ASIGNADO */}
-          {pedidoAsignado ? (
+          {/* PEDIDO O CONFIRMACION */}
+          {!pedidoAsignado ? (
+            <div className="card" style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>
+              <p style={{ fontWeight: 600 }}>Sin pedido asignado</p>
+              <p style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>Este mensajero esta disponible</p>
+            </div>
+          ) : entregado ? (
+            <div className="card" style={{ textAlign: 'center', padding: '2.5rem' }}>
+              <div style={{ width: '60px', height: '60px', background: '#1f3a5f', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <span style={{ color: 'white', fontSize: '1.5rem' }}>✓</span>
+              </div>
+              <h3 style={{ color: '#1a1a2e', fontWeight: 800, marginBottom: '0.5rem' }}>Pedido Entregado</h3>
+              <p style={{ color: '#888', marginBottom: '1.5rem' }}>El pedido de {pedidoAsignado.cliente} fue entregado exitosamente.</p>
+              <button
+                onClick={() => setEntregado(false)}
+                style={{ background: '#1f3a5f', color: 'white', border: 'none', borderRadius: '10px', padding: '0.75rem 2rem', fontWeight: 700, cursor: 'pointer' }}
+              >
+                Nuevo pedido
+              </button>
+            </div>
+          ) : (
             <div className="card">
               <h3 style={{ color: '#1a1a2e', marginBottom: '1rem', fontWeight: 700 }}>Pedido Asignado</h3>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -102,14 +116,12 @@ function Mensajero() {
                 ))}
               </div>
 
-              <button className="btn" style={{ marginTop: '1rem', width: '100%', padding: '0.75rem', background: '#1f3a5f', color: 'white', fontSize: '0.95rem' }}>
+              <button
+                onClick={() => setEntregado(true)}
+                style={{ marginTop: '1rem', width: '100%', padding: '0.85rem', background: '#1f3a5f', color: 'white', border: 'none', borderRadius: '10px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer' }}
+              >
                 Marcar como Entregado
               </button>
-            </div>
-          ) : (
-            <div className="card" style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>
-              <p style={{ fontWeight: 600 }}>Sin pedido asignado</p>
-              <p style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>Este mensajero esta disponible</p>
             </div>
           )}
         </div>
